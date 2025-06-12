@@ -1,0 +1,190 @@
+<template>
+  <div class="page column" @swipe="toListPage">
+    <!-- 头部城市信息 -->
+    <div class="header column center">
+      <text class="city">{{city}}</text>
+      <text class="province">{{province}}/{{country}}</text>
+    </div>
+    <div class="body column center">
+      <!-- 主要天气信息 -->
+      <div class="info">
+        <image class="icon" src="/common/icons/{{weather.icon}}.png"></image>
+        <div class="column center">
+          <text class="temp">{{weather.temp}}°</text>
+          <text class="weather">{{weather.text}}</text>
+        </div>
+      </div>
+      <!-- 体感温度等其他信息 -->
+      <div class="more-info row">
+        <div class="item column center">
+          <text class="value">{{weather.feelsLike}}°</text>
+          <text class="label">体感温度</text>
+        </div>
+        <div class="item column center">
+          <div><text class="value">{{weather.humidity}}</text><text class="sub">%</text></div>
+          <text class="label">湿度</text>
+        </div>
+        <div class="item column center">
+          <div><text class="value">{{weather.vis}}</text><text class="sub">km</text></div>
+          <text class="label">能见度</text>
+        </div>
+      </div>
+    </div>
+    <!-- 底部更新时间 -->
+    <div class="footer center">
+      <text class="update-time">数据更新于 {{weather.obsTime}}</text>
+    </div>
+  </div>
+</template>
+
+<style>
+/* 公共样式 */
+text {
+  color: #ffffff;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* 页面样式 */
+.page {
+  padding: 40px;
+  background-color: #000000;
+  width: 480px;
+  border-radius: 240px;
+}
+
+/* 头部样式 */
+.header {
+  margin-bottom: 20px;
+}
+
+.city {
+  font-size: 40px;
+}
+
+.province {
+  font-size: 18px;
+  color: #757575;
+}
+
+/* 天气数据样式 */
+.body {
+  flex: 1;
+}
+
+.temp {
+  font-size: 70px;
+}
+
+.icon {
+  width: 170px;
+  height: 170px;
+  margin-right: 20px;
+}
+
+.weather {
+  font-size: 24px;
+}
+
+/* 更多信息样式 */
+.more-info {
+  width: 335px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.21);
+  border-radius: 15px;
+}
+
+.item {
+  flex: 1;
+}
+
+.value {
+  font-size: 30px;
+}
+
+.sub {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.label {
+  color: #757575;
+  margin-top: 5px;
+}
+
+/* 底部样式 */
+.footer {
+  margin-top: 20px;    
+}
+
+.update-time {
+  color: #757575;
+}
+</style>
+
+<script>
+import router from '@system.router'
+import fetch from '@system.fetch'
+
+export default {
+  private: {
+    city: '武汉市',
+    province: '湖北省',
+    country: '中国',
+    weather: {
+      // 数据观测时间
+      obsTime: "12-21 09:05",
+      // 温度
+      temp: "13",
+      // 体感温度
+      feelsLike: "10",
+      // 天气icon图标编号
+      icon: "101",
+      // 天气描述文本
+      text: "多云",
+      // 相对湿度
+      humidity: "72",
+      // 能见度，单位：公里
+      vis: "16"
+    }
+  },
+
+  onReady() {
+    let key = '<你的key>' // 请替换为您的和风天气API密钥
+    // location，这里使用的是武汉的code
+    // 更多的location code可以查看：https://github.com/qwd/LocationList
+    fetch.fetch({
+      url: `https://devapi.qweather.com/v7/weather/now?location=101200101&key=${key}`
+    }).then(res => {
+      const result = res.data
+      console.log('返回的数据:', JSON.stringify(result.data, null, 2))
+      if (result.code === '200') {
+        this.weather = result.data.now
+      } else {
+        console.error('获取天气数据失败:', result.code)
+      }
+    }).catch(error => {
+      console.log(`数据请求失败:`, error)
+    })
+  },
+
+  toListPage(eve) {
+    if (eve.direction === 'up') {
+      router.push({
+        uri: '/pages/detail'
+      })
+    }
+  }
+}
+</script> 

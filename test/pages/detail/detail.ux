@@ -1,0 +1,193 @@
+<template>
+  <div class="page column" @swipe="toHomePage">
+    <!-- 头部城市信息 -->
+    <div class="header column center">
+      <text class="city">{{city}}</text>
+      <text class="province">{{province}}/{{country}}</text>
+    </div>
+    <div class="body column center">
+      <!-- 天气概况 -->
+      <div class="info">
+        <text class="title">未来3天预报</text>
+        <text class="summary">最高温{{maxTemp}}° 最低温{{minTemp}}°</text>
+      </div>
+      <!-- 未来3天天气 -->
+      <div class="list row">
+        <div class="item column center" for="{{list}}">
+          <text class="date">{{$item.fxDate}}</text>
+          <image class="icon" src="/common/icons/{{$item.iconDay}}.png"></image>
+          <text class="temp">{{$item.tempMin}}°~{{$item.tempMax}}°</text>
+        </div>
+      </div>
+    </div>
+    <!-- 底部更新时间 -->
+    <div class="footer center">
+      <text class="update-time">数据更新于 {{updateTime}}</text>
+    </div>
+  </div>
+</template>
+
+<style>
+/* 公共样式 */
+text {
+  color: #ffffff;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* 页面样式 */
+.page {
+  padding: 40px;
+  background-color: #000000;
+  width: 480px;
+  border-radius: 240px;
+}
+
+/* 头部样式 */
+.header {
+  margin-bottom: 20px;
+}
+
+.city {
+  font-size: 40px;
+}
+
+.province {
+  font-size: 18px;
+  color: #757575;
+}
+
+/* 天气数据样式 */
+.body {
+  flex: 1;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.summary {
+  font-size: 24px;
+  color: #757575;
+}
+
+/* 未来3天天气 */
+.list {
+  width: 380px;
+  justify-content: space-between;
+}
+
+.item {
+  width: 120px;
+  height: 175px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+
+.date {
+  font-size: 28px;
+}
+
+.icon {
+  width: 90px;
+  height: 90px;
+}
+
+.temp {
+  font-size: 24px;
+}
+
+/* 底部样式 */
+.footer {
+  margin-top: 20px;    
+}
+
+.update-time {
+  color: #757575;
+}
+</style>
+
+<script>
+import router from '@system.router'
+import fetch from '@system.fetch'
+
+export default {
+  private: {
+    city: '武汉市',
+    province: '湖北省',
+    country: '中国',
+    maxTemp: '12',
+    minTemp: '-1',
+    updateTime: '12-21 09:05',
+    list: [
+      {
+        "fxDate": "周日",
+        "tempMax": "12",
+        "tempMin": "-1",
+        "iconDay": "101",
+        "textDay": "多云"
+      },
+      {
+        "fxDate": "周一",
+        "tempMax": "13",
+        "tempMin": "0",
+        "iconDay": "100",
+        "textDay": "晴"
+      },
+      {
+        "fxDate": "周二",
+        "tempMax": "13",
+        "tempMin": "0",
+        "iconDay": "302",
+        "textDay": "晴",
+        "iconNight": "150",
+        "textNight": "晴"
+      }
+    ]
+  },
+
+  onReady() {
+    let key = '<你的key>' // 请替换为您的和风天气API密钥
+    // location，这里使用的是武汉的code
+    // 更多的location code可以查看：https://github.com/qwd/LocationList
+    fetch.fetch({
+      url: `https://devapi.qweather.com/v7/weather/3d?location=101200101&key=${key}`
+    }).then(res => {
+      const result = res.data
+      console.log('返回的数据:', JSON.stringify(result.data, null, 2))
+      if (result.code === '200') {
+        this.list = result.data.daily
+        // 计算最高温和最低温
+        this.maxTemp = Math.max(...result.data.daily.map(item => parseInt(item.tempMax)))
+        this.minTemp = Math.min(...result.data.daily.map(item => parseInt(item.tempMin)))
+        this.updateTime = result.data.updateTime
+      } else {
+        console.error('获取天气数据失败:', result.code)
+      }
+    }).catch(error => {
+      console.log(`数据请求失败:`, error)
+    })
+  },
+
+  toHomePage(eve) {
+    if (eve.direction === 'right') {
+      router.back()
+    }
+  }
+}
+</script> 

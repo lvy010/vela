@@ -1,0 +1,40 @@
+{
+  "template": {
+    "type": "div",
+    "attr": {},
+    "children": [
+      {
+        "type": "text",
+        "attr": {
+          "value": "{{message}}"
+        }
+      }
+    ]
+  },
+  "style": {
+    ".page": {
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "center",
+      "alignItems": "center"
+    }
+  },
+  "script": {
+    "export default": {
+      "data": {
+        "message": "Welcome to Vela App",
+        "apiKey": "<你的key>", // 请替换为您的和风天气API密钥
+        "location": "101200101" // 武汉的城市代码
+      },
+      "onInit": function() {
+        console.log('App initialized')
+      },
+      "onShow": function() {
+        console.log('App shown')
+      },
+      "onHide": function() {
+        console.log('App hidden')
+      }
+    }
+  }
+} 
