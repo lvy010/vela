@@ -1,0 +1,28 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    <text style="margin-top: 30px;">
+      <span>I am span,</span>
+      <span style="color: #f76160">I am span,</span>
+      <span style="color: #f76160;text-decoration: underline;">I am span,</span>
+    </text>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    
+    onReady() {
+
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+<style>
+  @import '../../../common/comm.css';
+</style>

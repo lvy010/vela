@@ -1,0 +1,40 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    <list class="list">
+      <list-item for="{{productList}}" type="product-item" class="item">
+        <text>{{$item.name}}: {{$item.price}}</text>
+      </list-item>
+    </list>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    data: {
+      productList: [
+        {name: '衣服', price: '100'},
+        {name: '裤子', price: '200'}
+      ]
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+
+  .list {
+    width: 100%;
+    height: 100%;
+  }
+
+  .item {
+    height: 40px;
+  }
+</style>

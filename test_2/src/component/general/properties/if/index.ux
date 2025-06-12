@@ -1,0 +1,35 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+
+    <text class="title">if 指令</text>
+    <div class="group column">
+      <text if="{{display}}">Hello-1</text>
+      <text elif="{{display}}">Hello-2</text>
+      <text else>Hello-3</text>
+    </div>
+
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    private: {
+      display: false
+    },
+
+    onReady() {
+    },
+
+    back() {
+      router.back();
+    },
+  }
+</script>
+
+<style>
+  @import '../../../../common/comm.css';
+
+</style>

@@ -1,0 +1,81 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    <text class="title">1. 数据存储 storage</text>
+    <div class="column group">
+      <text>data:{{data}}</text>
+      <input type="button" class="btn" onclick="setData" value="设置数据" />
+      <input type="button" class="btn" onclick="getData" value="获取数据" />
+      <input type="button" class="btn" onclick="deleteKey" value="删除某一个Key" />
+      <input type="button" class="btn" onclick="getKeys" value="数据项的数量" />
+    </div>
+
+
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+  import storage from '@system.storage'
+
+  export default {
+    private:{
+      data:''
+    },
+    onReady() {
+
+    },
+
+    setData() {
+      const self = this;
+      storage.set({
+        key: 'A1',
+        value: 'V1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+        success: function (data) {
+          self.data = data;
+          console.log('handling success')
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+    },
+    getData() {
+      const self = this;
+      storage.get({
+        key: 'A1',
+        success: function (data) {
+          self.data = data;
+          console.log('handling success')
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+    },
+    
+    deleteKey() {
+      const self = this;
+      storage.delete({
+        key: 'A1',
+        success: function (data) {
+          self.data = data;
+          console.log('handling success')
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+    },
+    getKeys() {
+      this.data = storage.length;
+    },
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+</style>

@@ -1,0 +1,68 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+
+    <text class="title">普通picker</text>
+    <picker 
+      class="picker" 
+      type="text" 
+      range="{{pickerList}}" 
+      value="{{pickerValue}}" 
+      selected="1" 
+      onchange="onPickerChange">
+    </picker>
+    <text class="value">选择的值：{{v1}}</text>
+
+    <text class="title">时间picker</text>
+    <picker 
+      class="picker" 
+      type="time"
+      selected="12:00" 
+      onchange="onTimePickerChange">
+    </picker>
+    <text class="value">选择的值：{{v2}}</text>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    private: {
+      pickerList: ['apple', 'peach', 'pear', 'banana'],
+      pickerValue: 'peach',
+      v1: 'peach',
+      v2: '12:00'
+    },
+    
+    onPickerChange(e) {
+      this.v1 = e.newValue;
+    },
+
+    onTimePickerChange(e) {
+      this.v2 = e.hour + ':' + e.minute;
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+  
+  .title {
+    /* font-weight: bold; */
+  }
+
+  .value {
+    margin-top: 5px;
+    margin-bottom: 30px;
+    color: #090;
+  }
+
+  .picker {
+    selected-color: #09f;
+  }
+</style>

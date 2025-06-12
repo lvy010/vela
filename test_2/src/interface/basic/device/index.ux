@@ -1,0 +1,38 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    <text class="title">1.设备信息 device</text>
+    <div class="column group">
+      <text>设备信息:</text>
+      <text class="code">{{deviceInfo}}</text>
+    </div>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+  import device from '@system.device'
+
+  export default {
+    private: {
+      deviceInfo: {}
+    },
+    onReady() {
+      const self = this;
+      device.getInfo({
+        success: function (ret) {
+          self.deviceInfo = JSON.stringify(ret,null,2)
+          console.log(`handling success ret: = ${ret}`)
+        }
+      })
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+</style>

@@ -1,0 +1,58 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    
+    <swiper class="swiper">
+      <text class="item item-1">A</text>
+      <text class="item item-2">B</text>
+      <text class="item item-3">C</text>
+      <text class="item item-4">D</text>
+    </swiper>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    private: {
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+
+  .swiper {
+    width: 300px;
+    height: 160px;
+    indicator-size: 10px;
+    margin-top: 30px;
+  }
+
+  .item {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+  }
+
+  .item-1 {
+    background-color: #3f56ea;
+  }
+
+  .item-2 {
+    background-color: #00bfc9;
+  }
+
+  .item-3 {
+    background-color: #47cc47;
+  }
+
+  .item-4 {
+    background-color: #FF6A00;
+  }
+</style>

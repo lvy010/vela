@@ -1,0 +1,52 @@
+<script>
+class A {
+  timer = null;
+
+  startTimer() {
+    this.timer = setInterval(() => {
+      console.log('timer:', Date.now());
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+}
+
+export default {
+  onCreate() {
+    console.log('[lifecycle] [app] onCreate');
+    setTimeout(() => {
+      this.$def.clsA.stopTimer();
+    }, 5000);
+  },
+
+  onShow() {
+    console.log('[lifecycle] [app] onShow');
+  },
+
+  onHide() {
+    console.log('[lifecycle] [app] onHide');
+  },
+
+  onDestroy() {
+    console.log('[lifecycle] [app] onDestroy');
+  },
+
+  getID() {
+    return Math.floor(1000000 + Math.random() * 8999999);
+  },
+
+  clsA: new A(),
+
+  globalInfo: {
+    package: 'com.xiaomi.vela.demo-test',
+    version: '9.5.27'
+  },
+
+  globalId: '9527'
+}
+</script>

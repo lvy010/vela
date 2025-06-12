@@ -1,0 +1,155 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+
+    <text class="title">1. 垂直/水平居中</text>
+    <div class="wrapper" style="justify-content: center; align-items: center">
+      <div class="small blue"></div>
+    </div>
+
+    <text class="title">2. 宽度自适应</text>
+    <div class="wrapper">
+      <div class="blue" style="width: 80px; height: 100%">
+        <text class="text-center">80px</text>
+      </div>
+      <div class="red" style="height: 100%; flex: 1;">
+        <text class="text-center">自适应</text>
+      </div>
+      <div class="green" style="width: 120px; height: 100%;">
+        <text class="text-center">120px</text>
+      </div>
+    </div>
+
+    <text class="title">3. Grid布局</text>
+    <div class="grid">
+      <div class="grid-item green" for="{{grids}}">
+        <text class="text-center">{{$idx}}</text>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    public: {
+      grids: new Array(12)
+    },
+
+    onReady() {
+
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../../common/comm.css';
+
+  .text-center {
+    text-align: center;
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+
+  .center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 400px;
+  }
+
+  .grid-item {
+    width: 58px;
+    height: 58px;
+    /* border: 1px solid #ff5d58; */
+    margin-bottom: 10px;
+  }
+
+  .index {
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+
+  .small {
+    width: 100px;
+    height: 100px;
+  }
+
+  .large {
+    width: 200px;
+    height: 100px;
+  }
+
+  .blue {
+    background-color: #469efd;
+  }
+
+  .green {
+    background-color: #28c943;
+  }
+
+  .red {
+    background-color: #ff5d58;
+  }
+
+  .wrapper {
+    position: relative;
+    width: 400px;
+    height: 120px;
+    background-color: #ff5d58;
+  }
+
+  .corner {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: #28c943;
+  }
+
+  .left-top {
+    left: 0;
+    top: 0;
+  }
+
+  .top-right {
+    right: 0;
+    top: 0;
+  }
+
+  .right-bottom {
+    right: 0;
+    bottom: 0;
+  }
+
+  .bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+
+  .center {
+    position: absolute;
+    left: 180px;
+    top: 30px;
+    width: 40px;
+    height: 40px;
+    background-color: #469efd;
+  }
+</style>

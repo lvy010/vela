@@ -1,0 +1,36 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+
+    <text class="text1">测试文本溢出自动显示省略号</text>
+
+    <text class="text2">测试文本溢出自动显示省略号</text>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    back() {
+      router.back();
+    }
+  }
+</script>
+<style>
+  @import '../../../common/comm.css';
+
+  .text1 {
+    width: 150px;
+    lines: 1;
+    text-overflow: ellipsis;
+    margin-top: 30px;
+  }
+
+  .text2 {
+    width: 100px;
+    lines: 2;
+    text-overflow: ellipsis;
+    margin-top: 30px;
+  }
+</style>

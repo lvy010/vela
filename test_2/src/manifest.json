@@ -1,0 +1,208 @@
+{
+  "package": "com.xiaomi.vela.samples",
+  "name": "test_2",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "minPlatformVersion": 1000,
+  "icon": "/common/logo.png",
+  "deviceTypeList": [
+    "watch"
+  ],
+  "features": [
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.fetch"
+    },
+    {
+      "name": "system.audio"
+    },
+    {
+      "name": "system.request"
+    },
+    {
+      "name": "system.app"
+    },
+    {
+      "name": "system.device"
+    },
+    {
+      "name": "system.configuration"
+    },
+    {
+      "name": "system.storage"
+    },
+    {
+      "name": "system.file"
+    },
+    {
+      "name": "system.interconnect"
+    },
+    {
+      "name": "system.vibrator"
+    },
+    {
+      "name": "system.brightness"
+    },
+    {
+      "name": "system.alarm"
+    },
+    {
+      "name": "system.audio"
+    },
+    {
+      "name": "system.network"
+    }
+  ],
+  "config": {
+    "logLevel": "log",
+    "designWidth": 480
+  },
+  "router": {
+    "entry": "home",
+    "pages": {
+      "home": {
+        "component": "index"
+      },
+      "framework/style/default": {
+        "component": "index"
+      },
+      "framework/script/basic": {
+        "component": "index"
+      },
+      "framework/script/global-data-method": {
+        "component": "index"
+      },
+      "framework/script/page-data": {
+        "component": "index"
+      },
+      "framework/script/lifecycle": {
+        "component": "index"
+      },
+      "framework/other/i18n": {
+        "component": "index"
+      },
+      "framework/other/background-running": {
+        "component": "index"
+      },
+      "component/general/style/basic": {
+        "component": "index"
+      },
+      "component/general/style/flex": {
+        "component": "index"
+      },
+      "component/general/data": {
+        "component": "index"
+      },
+      "component/general/events": {
+        "component": "index"
+      },
+      "component/general/methods": {
+        "component": "index"
+      },
+      "component/general/properties/for": {
+        "component": "index"
+      },
+      "component/general/properties/if": {
+        "component": "index"
+      },
+      "component/general/animation": {
+        "component": "index"
+      },
+      "component/container/div": {
+        "component": "index"
+      },
+      "component/container/list": {
+        "component": "index"
+      },
+      "component/container/stack": {
+        "component": "index"
+      },
+      "component/container/swiper": {
+        "component": "index"
+      },
+      "component/basic/text": {
+        "component": "index"
+      },
+      "component/basic/span": {
+        "component": "index"
+      },
+      "component/basic/image": {
+        "component": "index"
+      },
+      "component/basic/progress": {
+        "component": "index"
+      },
+      "component/basic/marquee": {
+        "component": "index"
+      },
+      "component/basic/chart": {
+        "component": "index"
+      },
+      "component/basic/qrcode": {
+        "component": "index"
+      },
+      "interface/basic/app": {
+        "component": "index"
+      },
+      "interface/basic/device": {
+        "component": "index"
+      },
+      "interface/basic/configuration": {
+        "component": "index"
+      },
+      "interface/basic/router": {
+        "component": "index"
+      },
+      "component/form/input": {
+        "component": "index"
+      },
+      "component/form/picker": {
+        "component": "index"
+      },
+      "component/form/switch": {
+        "component": "index"
+      },
+      "component/form/slider": {
+        "component": "index"
+      },
+      "interface/basic/router/detail": {
+        "component": "index"
+      },
+      "interface/network/interconnect": {
+        "component": "index"
+      },
+      "interface/network/fetch": {
+        "component": "index"
+      },
+      "interface/network/request": {
+        "component": "index"
+      },
+      "interface/data/storage": {
+        "component": "index"
+      },
+      "interface/data/file": {
+        "component": "index"
+      },
+      "interface/system/network": {
+        "component": "index"
+      },
+      "interface/system/vibrator": {
+        "component": "index"
+      },
+      "interface/system/brightness": {
+        "component": "index"
+      },
+      "interface/system/alarm": {
+        "component": "index"
+      },
+      "interface/other/audio": {
+        "component": "index"
+      }
+    }
+  },
+  "web": {
+    "loadUrl": ""
+  }
+}

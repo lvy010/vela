@@ -1,0 +1,44 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    <text class="title">slider组件</text>
+    <slider class="slider" min="0" max="100" step="10" value="{{ sliderValue }}" onchange="handleSliderChange"></slider>
+    <text>slider 的值：{{ sliderValue }}</text>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    data: {
+      sliderValue: 10,
+    },
+    onReady() {
+
+    },
+
+    back() {
+      router.back();
+    },
+    handleSliderChange(e) {
+      console.log(e)
+      this.sliderValue = e.progress
+    },
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+  
+  .title {
+    /* font-weight: bold; */
+  }
+
+  .slider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+</style>

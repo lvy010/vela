@@ -1,0 +1,45 @@
+<template>
+  <div class="column page">
+    <text class="back" @click="back">返回</text>
+    
+    <text class="title">1. 页面数据对象</text>
+    <div class="column group">
+      <text>num: {{num}}</text>
+    </div>
+  </div>
+</template>
+
+<script>
+  import router from '@system.router'
+
+  export default {
+    private: {
+      num: null
+    },
+
+    onInit() {
+      setTimeout(() => {
+        this.num = 1;
+      }, 1000);
+
+      setTimeout(() => {
+        this.num = 3;
+      }, 2000);
+
+      setTimeout(() => {
+        this.num = 5;
+      }, 3000);
+    },
+
+    onReady() {
+    },
+
+    back() {
+      router.back();
+    }
+  }
+</script>
+
+<style>
+  @import '../../../common/comm.css';
+</style>
